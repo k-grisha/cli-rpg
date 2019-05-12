@@ -1,27 +1,32 @@
 package gr.prog.clirpg.services;
 
 import gr.prog.clirpg.model.Hero;
-import gr.prog.clirpg.model.Position;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class HeroService {
-	private Map<String, Hero> characters = new HashMap<>();
+	private Map<String, Hero> heroes = new HashMap<>();
 
 	public void save(Hero hero) {
-		characters.put(hero.getName(), hero);
+		heroes.put(hero.getName(), hero);
 	}
 
 	public Hero load(String name) {
 		// todo обработка ошибок
-		return characters.get(name);
+		return heroes.get(name);
 	}
 
 	public Hero create(String name) {
 		// todo обработка ошибок
 		Hero hero = new Hero(name, 100, 0);
-		characters.put(hero.getName(), hero);
+//		heroes.put(hero.getName(), hero);
 		return hero;
+	}
+
+	public Collection<Hero> getAllSavedNames() {
+		return heroes.values();
 	}
 }

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 
 public enum Screen {
 
@@ -29,8 +30,18 @@ public enum Screen {
 			if (command.equals("1")) {
 				return CREATE_NEW_HERO;
 			}
+			if (command.equals("2")) {
+				return LOAD_GAME;
+			}
+			if (command.equals("3") && hero != null) {
+				heroService.save(hero);
+				return MAIN_SCREEN;
+			}
 			if (command.equals("4") && hero != null) {
 				return MAIN_SCREEN;
+			}
+			if (command.equals("5")) {
+				System.exit(0);
 			}
 			return this;
 		}
@@ -40,9 +51,39 @@ public enum Screen {
 			return getContent();
 		}
 	},
+	LOAD_GAME("loadGame.txt") {
+		@Override
+		public Screen dispatchCommand(String command) {
+			if (command.equals("m")) {
+				return MAIN_MENU;
+			}
+			Hero loadedHero = heroService.load(command);
+			if (loadedHero != null) {
+				hero = loadedHero;
+				return MAIN_SCREEN;
+			}
+			return this;
+		}
+
+		@Override
+		public String getView() {
+			Collection<Hero> savedHeroes = heroService.getAllSavedNames();
+			StringBuilder sb = new StringBuilder();
+			for (Hero savedHero : savedHeroes) {
+				sb.append("[").append(savedHero.getName()).append("] : ")
+						.append(" health: ").append(savedHero.getHealth())
+						.append(" experience: ").append(savedHero.getExperience()).append("\n");
+			}
+			return getContent()
+					.replace("${savedGames}", sb.toString());
+		}
+	},
 	CREATE_NEW_HERO("newHero.txt") {
 		@Override
 		public Screen dispatchCommand(String command) {
+			if (command.equals("m")) {
+				return MAIN_MENU;
+			}
 			hero = heroService.create(command);
 			worldService.generateNewWorld(hero, 10);
 			return MAIN_SCREEN;
@@ -79,6 +120,8 @@ public enum Screen {
 			}
 			if (!movedSuccess) {
 				notification = "Notification! You cant move there!";
+			} else {
+				notification = "";
 			}
 			return this;
 		}

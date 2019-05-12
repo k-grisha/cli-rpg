@@ -3,31 +3,33 @@ package gr.prog.clirpg.services;
 import gr.prog.clirpg.RpgException;
 import gr.prog.clirpg.model.Room;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RoomBuilder {
 	private static RoomBuilder instance;
-	private List<String> descriptions;
+	private List<String> descriptions = new ArrayList<>();
 	private Room initialRoom = new Room("This is initial room. You can explore the world and get fame in battles.");
 	private Random rndGenerator;
 
 	private RoomBuilder(String filename) {
-		URL url = getClass().getClassLoader().getResource(filename);
-		if (url == null) {
+		InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
+		if (is == null) {
 			throw new RpgException("Rooms description file not found");
 		}
+		BufferedReader buf = new BufferedReader(new InputStreamReader(is));
 		try {
-			Path path = Paths.get(url.toURI());
-			descriptions = Files.readAllLines(path, StandardCharsets.UTF_8);
-		} catch (URISyntaxException | IOException e) {
+			String line = buf.readLine();
+			while (line != null) {
+				descriptions.add(line);
+				line = buf.readLine();
+			}
+		} catch (IOException e) {
 			throw new RpgException("Fail to read file with rooms description", e);
 		}
 		rndGenerator = new Random();
@@ -40,7 +42,7 @@ public class RoomBuilder {
 		return instance;
 	}
 
-	public Room getRandomRoom(){
+	public Room getRandomRoom() {
 		int index = rndGenerator.nextInt(descriptions.size());
 		return new Room(descriptions.get(index));
 	}

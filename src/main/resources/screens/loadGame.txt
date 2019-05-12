@@ -1,0 +1,7 @@
+-----------------------------
+        LOAD GAME
+-----------------------------
+
+${savedGames}
+
+Enter hero name and press [Enter]:

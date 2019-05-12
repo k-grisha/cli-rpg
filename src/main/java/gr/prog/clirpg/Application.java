@@ -13,12 +13,9 @@ public class Application {
 		String command = "";
 		while (!command.equals("q")) {
 			System.out.print(currentScreen.getView());
-//			System.out.print(mainMenu);
-//			System.out.print("Input a command: ");
 			command = scanner.next();
 			currentScreen = currentScreen.dispatchCommand(command);
-
-			System.out.println(command);
+//			System.out.println(command);
 		}
 		scanner.close();
 	}

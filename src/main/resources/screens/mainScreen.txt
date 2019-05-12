@@ -11,4 +11,4 @@ w : go Up
 s : go Down
 a : go Left
 d : go Right
-m - Main menu
+m : Main menu
