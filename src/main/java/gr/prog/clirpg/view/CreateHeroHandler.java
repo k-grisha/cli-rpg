@@ -4,7 +4,7 @@ import gr.prog.clirpg.services.HeroService;
 import gr.prog.clirpg.services.WorldService;
 
 import static gr.prog.clirpg.view.View.MAIN_MENU;
-import static gr.prog.clirpg.view.View.MAIN_SCREEN;
+import static gr.prog.clirpg.view.View.GAME_VIEW;
 
 public class CreateHeroHandler extends BaseViewHandler {
 
@@ -24,7 +24,7 @@ public class CreateHeroHandler extends BaseViewHandler {
 		}
 		setHero(heroService.create(command));
 		worldService.generateNewWorld(getHero(), 10);
-		return MAIN_SCREEN;
+		return GAME_VIEW;
 	}
 
 	@Override

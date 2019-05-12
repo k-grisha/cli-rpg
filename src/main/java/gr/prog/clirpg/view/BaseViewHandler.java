@@ -44,9 +44,4 @@ public abstract class BaseViewHandler implements View.ViewHandler {
 		BaseViewHandler.hero = hero;
 	}
 
-	@Override
-	public View dispatchCommand(String command) {
-		return null;
-	}
-
 }

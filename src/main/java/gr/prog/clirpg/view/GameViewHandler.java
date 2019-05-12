@@ -2,15 +2,14 @@ package gr.prog.clirpg.view;
 
 import gr.prog.clirpg.services.WorldService;
 
-import static gr.prog.clirpg.view.View.MAIN_MENU;
-import static gr.prog.clirpg.view.View.MAIN_SCREEN;
+import static gr.prog.clirpg.view.View.*;
 
 public class GameViewHandler extends BaseViewHandler {
 
 	private final WorldService worldService;
 
 	public GameViewHandler(WorldService worldService) {
-		super("mainScreen.txt");
+		super("gameView.txt");
 		this.worldService = worldService;
 	}
 
@@ -20,6 +19,9 @@ public class GameViewHandler extends BaseViewHandler {
 	public View dispatchCommand(String command) {
 		if (command.equals("m")) {
 			return MAIN_MENU;
+		}
+		if (command.equals("v")) {
+			return WOLD_MAP;
 		}
 		boolean movedSuccess = true;
 		switch (command) {
@@ -41,7 +43,7 @@ public class GameViewHandler extends BaseViewHandler {
 		} else {
 			notification = "";
 		}
-		return MAIN_SCREEN;
+		return GAME_VIEW;
 	}
 
 	@Override

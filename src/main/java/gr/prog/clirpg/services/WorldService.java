@@ -52,6 +52,10 @@ public class WorldService {
 		return move(hero, newPosition);
 	}
 
+	public int getWorldSize(Hero hero){
+		return worlds.get(hero).getSize();
+	}
+
 	private boolean move(Hero hero, Position position) {
 		World world = worlds.get(hero);
 		if (!world.isValid(position)) {

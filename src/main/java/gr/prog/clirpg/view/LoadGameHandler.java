@@ -25,7 +25,7 @@ public class LoadGameHandler extends BaseViewHandler {
 		Hero loadedHero = heroService.load(index);
 		if (loadedHero != null) {
 			setHero(loadedHero);
-			return MAIN_SCREEN;
+			return GAME_VIEW;
 		}
 		return LOAD_GAME;
 	}

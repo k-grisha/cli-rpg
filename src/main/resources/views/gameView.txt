@@ -1,5 +1,5 @@
 -----------------------------
-        MAIN SCREEN
+        GAME VIEW
 -----------------------------
 ${notification}
 Location description:
@@ -11,4 +11,5 @@ ${username}, your current health: ${health} and experience: ${experience}
 [s] : go Down
 [a] : go Left
 [d] : go Right
+[v] : Show Map
 [m] : Main menu

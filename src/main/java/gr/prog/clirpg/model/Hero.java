@@ -46,6 +46,10 @@ public class Hero {
 		this.experience = experience;
 	}
 
+	public Set<Position> getVisitedPositions() {
+		return new HashSet<>(visitedPositions);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

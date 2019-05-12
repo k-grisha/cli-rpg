@@ -1,0 +1,7 @@
+-----------------------------
+        WORLD MAP
+-----------------------------
+
+${worldMap}
+
+Hit any key and press [Enter]:

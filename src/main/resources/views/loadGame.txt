@@ -3,5 +3,6 @@
 -----------------------------
 
 ${savedGames}
+[m] : Main menu
 
 Enter index of the saved game and press [Enter]:

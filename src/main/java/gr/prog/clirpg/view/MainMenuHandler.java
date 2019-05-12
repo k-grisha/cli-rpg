@@ -23,10 +23,10 @@ public class MainMenuHandler extends BaseViewHandler  {
 		}
 		if (command.equals("3") && getHero() != null) {
 			heroService.save(getHero());
-			return MAIN_SCREEN;
+			return GAME_VIEW;
 		}
 		if (command.equals("4") && getHero() != null) {
-			return MAIN_SCREEN;
+			return GAME_VIEW;
 		}
 		if (command.equals("5")) {
 			System.exit(0);
