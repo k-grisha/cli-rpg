@@ -4,4 +4,4 @@
 
 ${savedGames}
 
-Enter hero name and press [Enter]:
+Enter index of the saved game and press [Enter]:

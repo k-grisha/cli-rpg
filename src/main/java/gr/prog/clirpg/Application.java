@@ -1,21 +1,20 @@
 package gr.prog.clirpg;
 
-import gr.prog.clirpg.services.HeroService;
+import gr.prog.clirpg.view.View;
 
 import java.util.Scanner;
 
 public class Application {
 
-	private static Screen currentScreen = Screen.WELCOME;
+	private static View currentView = View.WELCOME;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String command = "";
 		while (!command.equals("q")) {
-			System.out.print(currentScreen.getView());
+			System.out.print(currentView.getHandler().getTextPresent());
 			command = scanner.next();
-			currentScreen = currentScreen.dispatchCommand(command);
-//			System.out.println(command);
+			currentView = currentView.getHandler().dispatchCommand(command);
 		}
 		scanner.close();
 	}

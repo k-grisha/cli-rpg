@@ -7,8 +7,8 @@ ${description}
 
 
 ${username}, your current health: ${health} and experience: ${experience}
-w : go Up
-s : go Down
-a : go Left
-d : go Right
-m : Main menu
+[w] : go Up
+[s] : go Down
+[a] : go Left
+[d] : go Right
+[m] : Main menu

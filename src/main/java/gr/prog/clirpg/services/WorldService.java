@@ -9,7 +9,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WorldService {
+	private static WorldService instance;
 	private Map<Hero, World> worlds = new HashMap<>();
+
+	private WorldService() {
+	}
+
+	public static WorldService getInstance() {
+		if (instance == null) {
+			instance = new WorldService();
+		}
+		return instance;
+	}
 
 	public void generateNewWorld(Hero hero, int size) {
 		World world = new World(size);

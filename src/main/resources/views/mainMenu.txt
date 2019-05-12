@@ -1,10 +1,10 @@
 -----------------------------
         MAIN MENU
 -----------------------------
-1 : New Game
-2 : Load Game
-3 : Save Game
-4 : Back to Game
-5 : Exit
+[1] : New Game
+[2] : Load Game
+[3] : Save Game
+[4] : Back to Game
+[5] : Exit
 
 Hit [1-5] and press [Enter]:
