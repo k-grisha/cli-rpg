@@ -1,0 +1,5 @@
+-----------------------------
+        NEW GAME
+-----------------------------
+
+Enter your hero name and press [Enter]:
