@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class RoomBuilder {
 	private static RoomBuilder instance;
@@ -45,11 +46,25 @@ public class RoomBuilder {
 	public Room generateRoom() {
 		List<Character> characters = new ArrayList<>();
 		if (rndGenerator.nextInt(3) == 0) {
-			Enemy enemy = new Enemy(30 + rndGenerator.nextInt(30), 2 + rndGenerator.nextInt(3));
-			characters.add(enemy);
+			characters.addAll(generateGoblinFamily());
 		}
 		String description = descriptions.get(rndGenerator.nextInt(descriptions.size()));
 		return new Room(description, characters);
+	}
+
+	private List<Character> generateGoblinFamily(){
+		List<Character> goblins = new ArrayList<>();
+		int parentsCount = rndGenerator.nextInt(2) + 1;
+		IntStream.range(0, parentsCount).forEach($ -> goblins.add(new Enemy(
+				50 + rndGenerator.nextInt(50),
+				5 + rndGenerator.nextInt(5),
+				"Big goblin")));
+		int babyCount = rndGenerator.nextInt(3) + 1;
+		IntStream.range(0, babyCount).forEach($->goblins.add(new Enemy(
+				10 + rndGenerator.nextInt(30),
+				1 + rndGenerator.nextInt(3),
+				"Baby goblin")));
+		return goblins;
 	}
 
 	public Room getInitialRoom() {
