@@ -1,7 +1,6 @@
 package gr.prog.clirpg.model;
 
 import gr.prog.clirpg.RpgException;
-import gr.prog.clirpg.services.RoomBuilder;
 
 public class World {
 	private Room[][] rooms;
@@ -21,7 +20,7 @@ public class World {
 		}
 		Room room = rooms[position.x][position.y];
 		if (room == null) {
-			room = roomBuilder.getRandomRoom();
+			room = roomBuilder.generateRoom();
 			rooms[position.x][position.y] = room;
 		}
 		return room;

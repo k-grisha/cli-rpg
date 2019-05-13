@@ -1,8 +1,13 @@
 package gr.prog.clirpg.view;
 
+import gr.prog.clirpg.model.Character;
 import gr.prog.clirpg.services.WorldService;
 
-import static gr.prog.clirpg.view.View.*;
+import java.util.List;
+
+import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.MAIN_MENU;
+import static gr.prog.clirpg.view.View.WOLD_MAP;
 
 public class GameViewHandler extends BaseViewHandler {
 
@@ -48,11 +53,23 @@ public class GameViewHandler extends BaseViewHandler {
 
 	@Override
 	public String getTextPresent() {
+		List<Character> characters = worldService.getCurrentRoom(getHero()).getCharacters();
+		StringBuilder sb = new StringBuilder();
+		if (characters.isEmpty()) {
+			sb.append("Nobody here");
+		}
+		for (Character character : characters) {
+			sb.append(character.getDescription()).append(" [health:").append(character.getHealth())
+					.append(", strength:").append(character.getStrength()).append("]\n");
+		}
+
 		return getContent()
 				.replace("${notification}", notification)
-				.replace("${description}", worldService.getCurrentRom(getHero()).getDescription())
+				.replace("${description}", worldService.getCurrentRoom(getHero()).getDescription())
+				.replace("${characters}", sb.toString())
 				.replace("${username}", getHero().getName())
 				.replace("${health}", getHero().getHealth().toString())
+				.replace("${strength}", getHero().getStrength().toString())
 				.replace("${experience}", getHero().getExperience().toString());
 	}
 }

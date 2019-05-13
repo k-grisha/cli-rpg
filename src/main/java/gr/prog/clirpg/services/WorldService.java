@@ -28,8 +28,12 @@ public class WorldService {
 		worlds.put(hero, world);
 	}
 
-	public Room getCurrentRom(Hero hero) {
+	public Room getCurrentRoom(Hero hero) {
 		return worlds.get(hero).getRoom(hero.getPosition());
+	}
+
+	public Room getRoom(Hero hero, Position position) {
+		return worlds.get(hero).getRoom(position);
 	}
 
 	public boolean moveUp(Hero hero) {

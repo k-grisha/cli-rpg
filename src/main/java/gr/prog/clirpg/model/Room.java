@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Room {
 	private String description;
-	private List<Enemy> enemies;
+	private List<Character> characters;
 	private List<Item> items;
 
-	public Room(String description) {
+	public Room(String description, List<Character> characters) {
 		this.description = description;
+		this.characters = characters;
 	}
 
 	public String getDescription() {
@@ -19,12 +20,12 @@ public class Room {
 		this.description = description;
 	}
 
-	public List<Enemy> getEnemies() {
-		return enemies;
+	public List<Character> getCharacters() {
+		return characters;
 	}
 
-	public void setEnemies(List<Enemy> enemies) {
-		this.enemies = enemies;
+	public void setCharacters(List<Character> characters) {
+		this.characters = characters;
 	}
 
 	public List<Item> getItems() {

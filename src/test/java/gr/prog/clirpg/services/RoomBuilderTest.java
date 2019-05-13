@@ -1,6 +1,6 @@
 package gr.prog.clirpg.services;
 
-import gr.prog.clirpg.model.Room;
+import gr.prog.clirpg.model.RoomBuilder;
 import org.junit.Test;
 
 public class RoomBuilderTest {

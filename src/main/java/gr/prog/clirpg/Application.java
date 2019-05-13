@@ -19,6 +19,4 @@ public class Application {
 		scanner.close();
 	}
 
-	private final static String mainMenu = "\n\n\n\n" +
-			"q - Quit\n";
 }

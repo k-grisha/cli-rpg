@@ -34,6 +34,8 @@ public class WorldMap extends BaseViewHandler {
 				if (visited.contains(position)) {
 					if (getHero().getPosition().equals(position)) {
 						sb.append(Color.ANSI_GREEN + "X" + Color.ANSI_RESET);
+					} else if(!worldService.getRoom(getHero(), position).getCharacters().isEmpty()){
+						sb.append(Color.ANSI_RED + "E" + Color.ANSI_RESET);
 					} else {
 						sb.append(" ");
 					}

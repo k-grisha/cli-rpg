@@ -4,16 +4,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Hero {
+public class Hero extends Character {
 	private final String name;
-	private Integer health;
 	private Integer experience;
 	private Position currentPosition;
 	private final Set<Position> visitedPositions = new HashSet<>();
 
-	public Hero(String name, Integer health, Integer experience) {
+	public Hero(String name, Integer maxHealth, Integer strength, Integer experience) {
+		super(maxHealth, strength, name + ", the main character in shining armor.");
 		this.name = name;
-		this.health = health;
 		this.experience = experience;
 	}
 
@@ -28,14 +27,6 @@ public class Hero {
 
 	public String getName() {
 		return name;
-	}
-
-	public Integer getHealth() {
-		return health;
-	}
-
-	public void setHealth(Integer health) {
-		this.health = health;
 	}
 
 	public Integer getExperience() {

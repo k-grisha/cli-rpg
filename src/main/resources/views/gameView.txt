@@ -5,8 +5,10 @@ ${notification}
 Location description:
 ${description}
 
+Characters in location:
+${characters}
 
-${username}, your current health: ${health} and experience: ${experience}
+${username}, your current health:${health}, experience:${experience}, strength:${strength}
 [w] : go Up
 [s] : go Down
 [a] : go Left

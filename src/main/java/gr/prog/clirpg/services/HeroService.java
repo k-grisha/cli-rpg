@@ -31,7 +31,7 @@ public class HeroService {
 		// todo обработка ошибок
 //		Hero hero = new Hero(name, 100, 0);
 //		heroes.put(hero.getName(), hero);
-		return new Hero(name, 100, 0);
+		return new Hero(name, 100, 10, 0);
 	}
 
 	public List<Hero> getAllSavedNames() {
