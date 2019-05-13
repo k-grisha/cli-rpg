@@ -31,7 +31,7 @@ public class World {
 	}
 
 	public boolean isValid(Position position) {
-		return position.x <= size && position.x >= 0 && position.y <= size && position.y >= 0;
+		return position.x < size && position.x >= 0 && position.y < size && position.y >= 0;
 	}
 
 	public int getSize() {

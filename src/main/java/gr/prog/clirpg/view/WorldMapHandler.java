@@ -7,11 +7,11 @@ import java.util.Set;
 
 import static gr.prog.clirpg.view.View.GAME_VIEW;
 
-public class WorldMap extends BaseViewHandler {
+public class WorldMapHandler extends BaseViewHandler {
 
 	private final WorldService worldService;
 
-	public WorldMap(WorldService worldService) {
+	public WorldMapHandler(WorldService worldService) {
 		super("worldMap.txt");
 		this.worldService = worldService;
 	}

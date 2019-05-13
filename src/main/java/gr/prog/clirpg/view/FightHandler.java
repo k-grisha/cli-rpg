@@ -7,13 +7,13 @@ import java.util.List;
 
 import static gr.prog.clirpg.view.View.*;
 
-public class GameViewHandler extends BaseViewHandler {
+public class FightHandler extends BaseViewHandler {
 
 	private final WorldService worldService;
 	private String notification = "";
 
-	public GameViewHandler(WorldService worldService) {
-		super("gameView.txt");
+	public FightHandler(WorldService worldService) {
+		super("fightView.txt");
 		this.worldService = worldService;
 	}
 
@@ -22,58 +22,48 @@ public class GameViewHandler extends BaseViewHandler {
 		if (command.equals("m")) {
 			return MAIN_MENU;
 		}
-		if (command.equals("v")) {
-			return WOLD_MAP;
+		if (command.equals("b")) {
+			return GAME_VIEW;
 		}
-		if (command.equals("f")) {
-			if (worldService.getCurrentRoom(getHero()).getCharacters().isEmpty()) {
-				notification = "There is no one to fight";
-				return GAME_VIEW;
-			}
+		Character character = null;
+		try {
+			int index = Integer.parseInt(command);
+			character = worldService.getCurrentRoom(getHero()).getCharacters().get(index);
+		} catch (NumberFormatException e) {
+			// todo Logging
+		}
+		if (character == null) {
 			return FIGHT_VIEW;
 		}
-		boolean movedSuccess = true;
-		switch (command) {
-			case "w":
-				movedSuccess = worldService.moveUp(getHero());
-				break;
-			case "s":
-				movedSuccess = worldService.moveDown(getHero());
-				break;
-			case "a":
-				movedSuccess = worldService.moveLeft(getHero());
-				break;
-			case "d":
-				movedSuccess = worldService.moveRight(getHero());
-				break;
-		}
-		if (!movedSuccess) {
-			notification = "You cant move there!";
+		notification = getHero().attack(character);
+		if (character.isAlive()) {
+			notification += "\n" + character.attack(getHero());
 		} else {
-			notification = "";
+			notification += "\n" + character.getName() + " died.";
 		}
-		return GAME_VIEW;
+		if (!getHero().isAlive()) {
+			notification += "\n" + getHero().getName() + " died.";
+		}
+		return FIGHT_VIEW;
 	}
 
 	@Override
 	public String getTextPresent() {
 		List<Character> characters = worldService.getCurrentRoom(getHero()).getCharacters();
 		StringBuilder sb = new StringBuilder();
-		if (characters.isEmpty()) {
-			sb.append("Nobody here");
-		}
-		for (Character character : characters) {
-			sb.append(character.getName());
+		for (int i = 0; i < characters.size(); i++) {
+			Character character = characters.get(i);
+			sb.append("[").append(i).append("] : ")
+					.append(character.getName());
 			if (character.isAlive()) {
 				sb.append(" [health:").append(character.getHealth()).append(", strength:").append(character.getStrength()).append("]\n");
 			} else {
 				sb.append(Color.ANSI_RED).append(" [dead]").append(Color.ANSI_RESET).append("\n");
 			}
-		}
 
+		}
 		return getContent()
 				.replace("${notification}", notification)
-				.replace("${description}", worldService.getCurrentRoom(getHero()).getDescription())
 				.replace("${characters}", sb.toString())
 				.replace("${username}", getHero().getName())
 				.replace("${health}", getHero().getHealth().toString())

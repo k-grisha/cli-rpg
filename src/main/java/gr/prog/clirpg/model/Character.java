@@ -5,17 +5,17 @@ public abstract class Character {
 	private Integer health;
 	private Integer maxHealth;
 	private Integer strength;
-	private final String description;
+	private final String name;
 
-	public Character(Integer maxHealth, Integer strength, String description) {
+	public Character(Integer maxHealth, Integer strength, String name) {
 		this.health = maxHealth;
 		this.maxHealth = maxHealth;
 		this.strength = strength;
-		this.description = description;
+		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
 	public Integer getHealth() {
@@ -30,19 +30,21 @@ public abstract class Character {
 		return maxHealth;
 	}
 
-	void increaseHealth(Integer health) {
+	public void increaseHealth(Integer health) {
 		if (isAlive()) {
 			this.health = this.health + health > maxHealth ? maxHealth : this.health + health;
 		}
 	}
 
-	void decreaseHealth(Integer health) {
+	public void decreaseHealth(Integer health) {
 		if (isAlive()) {
 			this.health = this.health - health;
 		}
 	}
 
-	boolean isAlive() {
+	public boolean isAlive() {
 		return health > 0;
 	}
+
+	public abstract String attack(Character character);
 }

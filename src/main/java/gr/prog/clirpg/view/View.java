@@ -10,7 +10,8 @@ public enum View {
 	LOAD_GAME(new LoadGameHandler(HeroService.getInstance())),
 	CREATE_NEW_HERO(new CreateHeroHandler(HeroService.getInstance(), WorldService.getInstance())),
 	GAME_VIEW(new GameViewHandler(WorldService.getInstance())),
-	WOLD_MAP(new WorldMap(WorldService.getInstance()));
+	WOLD_MAP(new WorldMapHandler(WorldService.getInstance())),
+	FIGHT_VIEW(new FightHandler(WorldService.getInstance()));
 
 	private final ViewHandler handler;
 

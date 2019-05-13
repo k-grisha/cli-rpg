@@ -7,4 +7,10 @@ public class Enemy extends Character {
 		super(maxHealth, strength, description);
 	}
 
+	@Override
+	public String attack(Character character) {
+		character.decreaseHealth(getStrength() );
+		return getName() + " hit " + character.getName();
+	}
+
 }

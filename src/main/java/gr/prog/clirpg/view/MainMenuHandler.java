@@ -15,20 +15,20 @@ public class MainMenuHandler extends BaseViewHandler  {
 
 	@Override
 	public View dispatchCommand(String command) {
-		if (command.equals("1")) {
+		if (command.equals("n")) {
 			return CREATE_NEW_HERO;
 		}
-		if (command.equals("2")) {
+		if (command.equals("l")) {
 			return LOAD_GAME;
 		}
-		if (command.equals("3") && getHero() != null) {
+		if (command.equals("s") && getHero() != null) {
 			heroService.save(getHero());
 			return GAME_VIEW;
 		}
-		if (command.equals("4") && getHero() != null) {
+		if (command.equals("b") && getHero() != null) {
 			return GAME_VIEW;
 		}
-		if (command.equals("5")) {
+		if (command.equals("q")) {
 			System.exit(0);
 		}
 		return MAIN_MENU;

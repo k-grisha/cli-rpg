@@ -4,6 +4,7 @@ import gr.prog.clirpg.model.Hero;
 import gr.prog.clirpg.model.Position;
 import gr.prog.clirpg.model.Room;
 import gr.prog.clirpg.model.World;
+import gr.prog.clirpg.model.Character;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,5 +69,4 @@ public class WorldService {
 		hero.setPosition(position);
 		return true;
 	}
-
 }

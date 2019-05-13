@@ -4,7 +4,6 @@ import static gr.prog.clirpg.view.View.MAIN_MENU;
 
 public class WelcomeHandler extends BaseViewHandler {
 
-
 	public WelcomeHandler() {
 		super("welcome.txt");
 	}
