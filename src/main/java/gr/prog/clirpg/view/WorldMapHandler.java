@@ -1,7 +1,9 @@
 package gr.prog.clirpg.view;
 
+import gr.prog.clirpg.model.Hero;
 import gr.prog.clirpg.model.Position;
-import gr.prog.clirpg.services.WorldService;
+import gr.prog.clirpg.services.CurrentHero;
+import gr.prog.clirpg.services.HeroService;
 
 import java.util.Set;
 
@@ -9,11 +11,11 @@ import static gr.prog.clirpg.view.View.GAME_VIEW;
 
 public class WorldMapHandler extends BaseViewHandler {
 
-	private final WorldService worldService;
+	private final CurrentHero currentHero;
 
-	public WorldMapHandler(WorldService worldService) {
+	public WorldMapHandler(CurrentHero currentHero) {
 		super("worldMap.txt");
-		this.worldService = worldService;
+		this.currentHero = currentHero;
 	}
 
 
@@ -28,9 +30,10 @@ public class WorldMapHandler extends BaseViewHandler {
 	}
 
 	private String buildTextMap() {
+		Hero hero = currentHero.getHero();
 		StringBuilder sb = new StringBuilder();
-		int worldSize = worldService.getWorldSize(getHero());
-		Set<Position> visited = getHero().getVisitedPositions();
+		int worldSize = hero.getWorld().getSize();
+		Set<Position> visited = hero.getVisitedPositions();
 		for (int y = worldSize - 1; y >= 0; y--) {
 			for (int x = 0; x < worldSize; x++) {
 				addMapElement(x, y, sb, visited);
@@ -43,9 +46,10 @@ public class WorldMapHandler extends BaseViewHandler {
 	private void addMapElement(int x, int y, StringBuilder sb, Set<Position> visited) {
 		Position position = new Position(x, y);
 		if (visited.contains(position)) {
-			if (getHero().getPosition().equals(position)) {
+			Hero hero = currentHero.getHero();
+			if (hero.getPosition().equals(position)) {
 				sb.append(Color.ANSI_GREEN + "X" + Color.ANSI_RESET);
-			} else if (!worldService.getRoom(getHero(), position).getCharacters().isEmpty()) {
+			} else if (!hero.getWorld().getRoom(position).getCharacters().isEmpty()) {
 				sb.append(Color.ANSI_RED + "E" + Color.ANSI_RESET);
 			} else {
 				sb.append(" ");

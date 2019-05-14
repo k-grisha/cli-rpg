@@ -1,6 +1,8 @@
 package gr.prog.clirpg.model;
 
-public abstract class Character {
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
 
 	private Integer health;
 	private Integer maxHealth;

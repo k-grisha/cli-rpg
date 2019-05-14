@@ -1,20 +1,25 @@
 package gr.prog.clirpg.view;
 
 import gr.prog.clirpg.model.Character;
-import gr.prog.clirpg.services.WorldService;
+import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.services.CurrentHero;
+import gr.prog.clirpg.services.HeroService;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.*;
+import static gr.prog.clirpg.view.View.FIGHT_VIEW;
+import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.MAIN_MENU;
+import static gr.prog.clirpg.view.View.WOLD_MAP;
 
 public class GameViewHandler extends BaseViewHandler {
 
-	private final WorldService worldService;
+	private final CurrentHero currentHero;
 	private String notification = "";
 
-	public GameViewHandler(WorldService worldService) {
+	public GameViewHandler(CurrentHero currentHero) {
 		super("gameView.txt");
-		this.worldService = worldService;
+		this.currentHero = currentHero;
 	}
 
 	@Override
@@ -25,8 +30,9 @@ public class GameViewHandler extends BaseViewHandler {
 		if (command.equals("v")) {
 			return WOLD_MAP;
 		}
+		Hero hero = currentHero.getHero();
 		if (command.equals("f")) {
-			if (worldService.getCurrentRoom(getHero()).getCharacters().isEmpty()) {
+			if (hero.getCurrentRoom().getCharacters().isEmpty()) {
 				notification = "There is no one to fight";
 				return GAME_VIEW;
 			}
@@ -35,16 +41,16 @@ public class GameViewHandler extends BaseViewHandler {
 		boolean movedSuccess = true;
 		switch (command) {
 			case "w":
-				movedSuccess = worldService.moveUp(getHero());
+				movedSuccess = hero.moveUp();
 				break;
 			case "s":
-				movedSuccess = worldService.moveDown(getHero());
+				movedSuccess = hero.moveDown();
 				break;
 			case "a":
-				movedSuccess = worldService.moveLeft(getHero());
+				movedSuccess = hero.moveLeft();
 				break;
 			case "d":
-				movedSuccess = worldService.moveRight(getHero());
+				movedSuccess = hero.moveRight();
 				break;
 		}
 		if (!movedSuccess) {
@@ -57,7 +63,8 @@ public class GameViewHandler extends BaseViewHandler {
 
 	@Override
 	public String getTextPresent() {
-		List<Character> characters = worldService.getCurrentRoom(getHero()).getCharacters();
+		Hero hero = currentHero.getHero();
+		List<Character> characters = hero.getCurrentRoom().getCharacters();
 		StringBuilder sb = new StringBuilder();
 		if (characters.isEmpty()) {
 			sb.append("Nobody here");
@@ -73,11 +80,11 @@ public class GameViewHandler extends BaseViewHandler {
 
 		return getContent()
 				.replace("${notification}", notification)
-				.replace("${description}", worldService.getCurrentRoom(getHero()).getDescription())
+				.replace("${description}", hero.getCurrentRoom().getDescription())
 				.replace("${characters}", sb.toString())
-				.replace("${username}", getHero().getName())
-				.replace("${health}", getHero().getHealth().toString())
-				.replace("${strength}", getHero().getStrength().toString())
-				.replace("${experience}", getHero().getExperience().toString());
+				.replace("${username}", hero.getName())
+				.replace("${health}", hero.getHealth().toString())
+				.replace("${strength}", hero.getStrength().toString())
+				.replace("${experience}", hero.getExperience().toString());
 	}
 }

@@ -1,17 +1,18 @@
 package gr.prog.clirpg.view;
 
+import gr.prog.clirpg.repository.InMemoryRepository;
+import gr.prog.clirpg.services.CurrentHero;
 import gr.prog.clirpg.services.HeroService;
-import gr.prog.clirpg.services.WorldService;
 
 public enum View {
 
 	WELCOME(new WelcomeHandler()),
-	MAIN_MENU(new MainMenuHandler(HeroService.getInstance())),
-	LOAD_GAME(new LoadGameHandler(HeroService.getInstance())),
-	CREATE_NEW_HERO(new CreateHeroHandler(HeroService.getInstance(), WorldService.getInstance())),
-	GAME_VIEW(new GameViewHandler(WorldService.getInstance())),
-	WOLD_MAP(new WorldMapHandler(WorldService.getInstance())),
-	FIGHT_VIEW(new FightHandler(WorldService.getInstance()));
+	MAIN_MENU(new MainMenuHandler(new HeroService(InMemoryRepository.getInstance()), CurrentHero.getInstance())),
+	LOAD_GAME(new LoadGameHandler(new HeroService(InMemoryRepository.getInstance()), CurrentHero.getInstance())),
+	CREATE_NEW_HERO(new CreateHeroHandler(new HeroService(InMemoryRepository.getInstance()), CurrentHero.getInstance())),
+	GAME_VIEW(new GameViewHandler(CurrentHero.getInstance())),
+	WOLD_MAP(new WorldMapHandler(CurrentHero.getInstance())),
+	FIGHT_VIEW(new FightHandler(CurrentHero.getInstance()));
 
 	private final ViewHandler handler;
 
@@ -25,6 +26,7 @@ public enum View {
 
 	public interface ViewHandler {
 		View dispatchCommand(String command);
+
 		String getTextPresent();
 	}
 

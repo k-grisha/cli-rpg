@@ -1,18 +1,23 @@
 package gr.prog.clirpg.view;
 
 import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.services.CurrentHero;
 import gr.prog.clirpg.services.HeroService;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.*;
+import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.LOAD_GAME;
+import static gr.prog.clirpg.view.View.MAIN_MENU;
 
 public class LoadGameHandler extends BaseViewHandler {
 	private final HeroService heroService;
+	private final CurrentHero currentHero;
 
-	public LoadGameHandler(HeroService heroService) {
+	public LoadGameHandler(HeroService heroService, CurrentHero currentHero) {
 		super("loadGame.txt");
 		this.heroService = heroService;
+		this.currentHero = currentHero;
 	}
 
 	@Override
@@ -28,7 +33,7 @@ public class LoadGameHandler extends BaseViewHandler {
 			// todo Logging
 		}
 		if (loadedHero != null) {
-			setHero(loadedHero);
+			currentHero.setHero(loadedHero);
 			return GAME_VIEW;
 		}
 		return LOAD_GAME;
@@ -36,7 +41,7 @@ public class LoadGameHandler extends BaseViewHandler {
 
 	@Override
 	public String getTextPresent() {
-		List<Hero> heroes = heroService.getAllSavedNames();
+		List<Hero> heroes = heroService.getAllHeroes();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < heroes.size(); i++) {
 			sb.append("[").append(i).append("] : ")

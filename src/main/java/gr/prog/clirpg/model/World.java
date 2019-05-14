@@ -2,11 +2,13 @@ package gr.prog.clirpg.model;
 
 import gr.prog.clirpg.RpgException;
 
-public class World {
+import java.io.Serializable;
+
+public class World implements Serializable {
 	private Room[][] rooms;
 	private final int size;
 	private final Position initialPosition = new Position(0, 0);
-	private final RoomBuilder roomBuilder = RoomBuilder.getInstance();
+	private final static RoomBuilder roomBuilder = RoomBuilder.getInstance();
 
 	public World(int size) {
 		this.size = size;

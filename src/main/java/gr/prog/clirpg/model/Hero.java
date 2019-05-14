@@ -1,8 +1,18 @@
 package gr.prog.clirpg.model;
 
-import java.util.*;
+import javax.annotation.PostConstruct;
+import java.beans.ConstructorProperties;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Set;
 
-public class Hero extends Character {
+public class Hero extends Character implements Serializable {
 	private Integer experience;
 	private Position currentPosition;
 	private final Set<Position> visitedPositions = new HashSet<>();
@@ -11,17 +21,30 @@ public class Hero extends Character {
 		put("left hand hit", 0.5);
 		put("kicked", 1.5);
 	}};
+	private World world;
 
-	public Hero(String name, Integer maxHealth, Integer strength, Integer experience) {
+
+	public Hero(String name, Integer maxHealth, Integer strength, Integer experience, World world) {
 		super(maxHealth, strength, name);
 		this.experience = experience;
+		this.world = world;
+		setPosition(world.getInitialPosition());
+	}
+
+
+	public World getWorld() {
+		return world;
+	}
+
+	public Room getCurrentRoom() {
+		return getWorld().getRoom(getPosition());
 	}
 
 	public Position getPosition() {
 		return currentPosition;
 	}
 
-	public void setPosition(Position position) {
+	private void setPosition(Position position) {
 		currentPosition = position;
 		visitedPositions.add(position);
 	}
@@ -38,6 +61,48 @@ public class Hero extends Character {
 		return new HashSet<>(visitedPositions);
 	}
 
+	public boolean moveUp() {
+		Position newPosition = new Position(getPosition().x, getPosition().y + 1);
+		return move(newPosition);
+	}
+
+	public boolean moveDown() {
+		Position newPosition = new Position(getPosition().x, getPosition().y - 1);
+		return move(newPosition);
+	}
+
+	public boolean moveLeft() {
+		Position newPosition = new Position(getPosition().x - 1, getPosition().y);
+		return move(newPosition);
+	}
+
+	public boolean moveRight() {
+		Position newPosition = new Position(getPosition().x + 1, getPosition().y);
+		return move(newPosition);
+	}
+
+	private boolean move(Position position) {
+		World world = getWorld();
+		if (!world.isValid(position)) {
+			return false;
+		}
+		setPosition(position);
+		return true;
+	}
+
+	@Override
+	public String attack(Character character) {
+		List<String> keyList = new ArrayList<>(kicks.keySet());
+		int randomIndex = new Random().nextInt(keyList.size());
+		String randomKick = keyList.get(randomIndex);
+		int power = (int) (getStrength() * kicks.get(randomKick));
+		character.decreaseHealth(power);
+		experience += power;
+		return getName() + " " + randomKick + " " + character.getName();
+	}
+
+
+	// todo REMOVE
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -51,14 +116,5 @@ public class Hero extends Character {
 		return Objects.hash(getName());
 	}
 
-	@Override
-	public String attack(Character character) {
-		List<String> keyList = new ArrayList<>(kicks.keySet());
-		int randomIndex = new Random().nextInt(keyList.size());
-		String randomKick = keyList.get(randomIndex);
-		int power = (int) (getStrength() * kicks.get(randomKick));
-		character.decreaseHealth(power);
-		experience += power;
-		return getName() + " " + randomKick + " " + character.getName();
-	}
+
 }

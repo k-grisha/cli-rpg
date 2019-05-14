@@ -1,55 +1,59 @@
 package gr.prog.clirpg.view;
 
 import gr.prog.clirpg.model.Character;
-import gr.prog.clirpg.services.WorldService;
+import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.services.CurrentHero;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.*;
+import static gr.prog.clirpg.view.View.FIGHT_VIEW;
+import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.MAIN_MENU;
 
 public class FightHandler extends BaseViewHandler {
 
-	private final WorldService worldService;
+	private final CurrentHero currentHero;
 	private String notification = "";
 
-	public FightHandler(WorldService worldService) {
+	public FightHandler(CurrentHero currentHero) {
 		super("fightView.txt");
-		this.worldService = worldService;
+		this.currentHero = currentHero;
 	}
 
 	@Override
 	public View dispatchCommand(String command) {
+		Hero hero = currentHero.getHero();
 		if (command.equals("m")) {
 			return MAIN_MENU;
 		}
 		if (command.equals("b")) {
 			return GAME_VIEW;
 		}
-		Character character = null;
+		Character character;
 		try {
 			int index = Integer.parseInt(command);
-			character = worldService.getCurrentRoom(getHero()).getCharacters().get(index);
+			character = hero.getCurrentRoom().getCharacters().get(index);
 		} catch (NumberFormatException e) {
 			// todo Logging
-		}
-		if (character == null) {
 			return FIGHT_VIEW;
 		}
-		notification = getHero().attack(character);
+		notification = hero.attack(character);
 		if (character.isAlive()) {
-			notification += "\n" + character.attack(getHero());
+			notification += "\n" + character.attack(hero);
 		} else {
 			notification += "\n" + character.getName() + " died.";
 		}
-		if (!getHero().isAlive()) {
-			notification += "\n" + getHero().getName() + " died.";
+		// todo handle death
+		if (!hero.isAlive()) {
+			notification += "\n" + hero.getName() + " died.";
 		}
 		return FIGHT_VIEW;
 	}
 
 	@Override
 	public String getTextPresent() {
-		List<Character> characters = worldService.getCurrentRoom(getHero()).getCharacters();
+		Hero hero = currentHero.getHero();
+		List<Character> characters = hero.getCurrentRoom().getCharacters();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < characters.size(); i++) {
 			Character character = characters.get(i);
@@ -65,9 +69,9 @@ public class FightHandler extends BaseViewHandler {
 		return getContent()
 				.replace("${notification}", notification)
 				.replace("${characters}", sb.toString())
-				.replace("${username}", getHero().getName())
-				.replace("${health}", getHero().getHealth().toString())
-				.replace("${strength}", getHero().getStrength().toString())
-				.replace("${experience}", getHero().getExperience().toString());
+				.replace("${username}", hero.getName())
+				.replace("${health}", hero.getHealth().toString())
+				.replace("${strength}", hero.getStrength().toString())
+				.replace("${experience}", hero.getExperience().toString());
 	}
 }

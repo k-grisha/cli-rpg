@@ -1,40 +1,38 @@
 package gr.prog.clirpg.services;
 
 import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.Position;
+import gr.prog.clirpg.model.World;
+import gr.prog.clirpg.repository.HeroRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HeroService {
-	private static HeroService instance;
-	private List<Hero> heroes = new ArrayList<>();
+	private final HeroRepository heroRepository;
 
-	private HeroService() {
-	}
-
-	public static HeroService getInstance() {
-		if (instance == null) {
-			instance = new HeroService();
-		}
-		return instance;
+	public HeroService(HeroRepository heroRepository) {
+		this.heroRepository = heroRepository;
 	}
 
 	public void save(Hero hero) {
-		heroes.add(hero);
+		heroRepository.save(hero);
 	}
 
 	public Hero load(int index) {
 		// todo обработка ошибок
-		return heroes.get(index);
+		return heroRepository.findById(index);
 	}
 
-	public Hero create(String name) {
+	public Hero createHero(String name) {
 		// todo обработка ошибок
-//		Hero hero = new Hero(name, 100, 0);
-//		heroes.put(hero.getName(), hero);
-		return new Hero(name, 100, 10, 0);
+		return new Hero(name, 100, 10, 0, new World(10));
 	}
 
-	public List<Hero> getAllSavedNames() {
-		return heroes;
+	// todo rename
+	public List<Hero> getAllHeroes() {
+		return heroRepository.findAll();
 	}
+
+
 }
