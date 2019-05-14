@@ -14,23 +14,24 @@ public class HeroService {
 	}
 
 	public void save(Hero hero) {
+		if (hero == null) {
+			return;
+		}
 		heroRepository.save(hero);
 	}
 
 	public Hero load(int index) {
-		// todo обработка ошибок
 		return heroRepository.findById(index);
 	}
 
+	// todo make adjustable
 	public Hero createHero(String name) {
-		// todo обработка ошибок
 		return new Hero(name, 100, 10, 0, new World(10));
 	}
 
-	// todo rename
+
 	public List<Hero> getAllHeroes() {
 		return heroRepository.findAll();
 	}
-
 
 }
