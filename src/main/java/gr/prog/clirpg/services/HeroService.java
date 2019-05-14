@@ -1,17 +1,15 @@
 package gr.prog.clirpg.services;
 
-import gr.prog.clirpg.model.Hero;
-import gr.prog.clirpg.model.Position;
-import gr.prog.clirpg.model.World;
-import gr.prog.clirpg.repository.HeroRepository;
+import gr.prog.clirpg.model.characters.Hero;
+import gr.prog.clirpg.model.world.World;
+import gr.prog.clirpg.repository.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeroService {
-	private final HeroRepository heroRepository;
+	private final Repository<Hero> heroRepository;
 
-	public HeroService(HeroRepository heroRepository) {
+	public HeroService(Repository<Hero> heroRepository) {
 		this.heroRepository = heroRepository;
 	}
 

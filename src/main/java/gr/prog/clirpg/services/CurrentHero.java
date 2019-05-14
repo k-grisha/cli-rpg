@@ -1,6 +1,6 @@
 package gr.prog.clirpg.services;
 
-import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.characters.Hero;
 
 public class CurrentHero {
 	private static CurrentHero instance;

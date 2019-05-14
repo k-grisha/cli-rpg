@@ -1,12 +1,13 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
 
-import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.characters.Hero;
 import gr.prog.clirpg.services.CurrentHero;
 import gr.prog.clirpg.services.HeroService;
+import gr.prog.clirpg.view.View;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.LOAD_GAME;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 
@@ -34,7 +35,7 @@ public class LoadGameHandler extends BaseViewHandler {
 		}
 		if (loadedHero != null) {
 			currentHero.setHero(loadedHero);
-			return GAME_VIEW;
+			return GAME_PLAY;
 		}
 		return LOAD_GAME;
 	}

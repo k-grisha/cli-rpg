@@ -1,6 +1,7 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
 
 import gr.prog.clirpg.RpgException;
+import gr.prog.clirpg.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;

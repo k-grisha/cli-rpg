@@ -1,4 +1,4 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.characters;
 
 // todo Some specific behaviors for Enemies
 public class Enemy extends Character {

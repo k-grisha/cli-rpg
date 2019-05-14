@@ -1,6 +1,8 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.world;
 
 import gr.prog.clirpg.RpgException;
+import gr.prog.clirpg.model.characters.Character;
+import gr.prog.clirpg.model.characters.Enemy;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.utils;
 
 public class Color {
 	public static final String ANSI_RESET = "\u001B[0m";

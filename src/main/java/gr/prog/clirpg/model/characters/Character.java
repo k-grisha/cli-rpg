@@ -1,4 +1,4 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.characters;
 
 import java.io.Serializable;
 

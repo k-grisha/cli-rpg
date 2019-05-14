@@ -1,4 +1,4 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.world;
 
 import gr.prog.clirpg.RpgException;
 

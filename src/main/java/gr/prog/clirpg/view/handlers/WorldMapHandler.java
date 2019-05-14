@@ -1,13 +1,14 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
 
-import gr.prog.clirpg.model.Hero;
-import gr.prog.clirpg.model.Position;
+import gr.prog.clirpg.model.characters.Hero;
+import gr.prog.clirpg.model.world.Position;
 import gr.prog.clirpg.services.CurrentHero;
-import gr.prog.clirpg.services.HeroService;
+import gr.prog.clirpg.view.View;
+import gr.prog.clirpg.view.utils.Color;
 
 import java.util.Set;
 
-import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.GAME_PLAY;
 
 public class WorldMapHandler extends BaseViewHandler {
 
@@ -21,7 +22,7 @@ public class WorldMapHandler extends BaseViewHandler {
 
 	@Override
 	public View dispatchCommand(String command) {
-		return GAME_VIEW;
+		return GAME_PLAY;
 	}
 
 	@Override

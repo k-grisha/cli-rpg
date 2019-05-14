@@ -1,4 +1,4 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.world;
 
 import java.io.Serializable;
 import java.util.Objects;

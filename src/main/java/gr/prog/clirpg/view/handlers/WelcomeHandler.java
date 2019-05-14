@@ -1,4 +1,6 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
+
+import gr.prog.clirpg.view.View;
 
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 

@@ -1,7 +1,9 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.characters;
 
-import javax.annotation.PostConstruct;
-import java.beans.ConstructorProperties;
+import gr.prog.clirpg.model.world.Position;
+import gr.prog.clirpg.model.world.Room;
+import gr.prog.clirpg.model.world.World;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

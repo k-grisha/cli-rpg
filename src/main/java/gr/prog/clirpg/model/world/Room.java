@@ -1,4 +1,7 @@
-package gr.prog.clirpg.model;
+package gr.prog.clirpg.model.world;
+
+import gr.prog.clirpg.model.characters.Character;
+import gr.prog.clirpg.model.items.Item;
 
 import java.io.Serializable;
 import java.util.ArrayList;

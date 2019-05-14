@@ -1,13 +1,15 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
 
-import gr.prog.clirpg.model.Character;
-import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.characters.Character;
+import gr.prog.clirpg.model.characters.Hero;
 import gr.prog.clirpg.services.CurrentHero;
+import gr.prog.clirpg.view.View;
+import gr.prog.clirpg.view.utils.Color;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.FIGHT_VIEW;
-import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.FIGHT;
+import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 
 public class FightHandler extends BaseViewHandler {
@@ -27,7 +29,7 @@ public class FightHandler extends BaseViewHandler {
 			return MAIN_MENU;
 		}
 		if (command.equals("b")) {
-			return GAME_VIEW;
+			return GAME_PLAY;
 		}
 		Character character;
 		try {
@@ -35,7 +37,7 @@ public class FightHandler extends BaseViewHandler {
 			character = hero.getCurrentRoom().getCharacters().get(index);
 		} catch (NumberFormatException e) {
 			// todo Logging
-			return FIGHT_VIEW;
+			return FIGHT;
 		}
 		notification = hero.attack(character);
 		if (character.isAlive()) {
@@ -47,7 +49,7 @@ public class FightHandler extends BaseViewHandler {
 		if (!hero.isAlive()) {
 			notification += "\n" + hero.getName() + " died.";
 		}
-		return FIGHT_VIEW;
+		return FIGHT;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package gr.prog.clirpg.repository;
 
 import gr.prog.clirpg.RpgException;
-import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.characters.Hero;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,13 +13,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-//todo Generic
-public class InMemoryRepository implements HeroRepository {
+public class InMemoryRepository implements Repository<Hero> {
 	private static InMemoryRepository instance;
 
 	private final List<byte[]> storage = new ArrayList<>();
 
-	public InMemoryRepository() {
+	private InMemoryRepository() {
 	}
 
 	public static InMemoryRepository getInstance() {
@@ -56,6 +55,11 @@ public class InMemoryRepository implements HeroRepository {
 			result.add(readHero(bytes));
 		}
 		return result;
+	}
+
+	@Override
+	public void clear() {
+		storage.clear();
 	}
 
 	private Hero readHero(byte[] bytes) {

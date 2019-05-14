@@ -1,23 +1,25 @@
-package gr.prog.clirpg.view;
+package gr.prog.clirpg.view.handlers;
 
-import gr.prog.clirpg.model.Character;
-import gr.prog.clirpg.model.Hero;
+import gr.prog.clirpg.model.characters.Character;
+import gr.prog.clirpg.model.characters.Hero;
 import gr.prog.clirpg.services.CurrentHero;
-import gr.prog.clirpg.services.HeroService;
+import gr.prog.clirpg.view.View;
+import gr.prog.clirpg.view.utils.Color;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.FIGHT_VIEW;
-import static gr.prog.clirpg.view.View.GAME_VIEW;
+import static gr.prog.clirpg.view.View.FIGHT;
+import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 import static gr.prog.clirpg.view.View.WOLD_MAP;
 
-public class GameViewHandler extends BaseViewHandler {
+public class GamePlayHandler extends BaseViewHandler {
 
 	private final CurrentHero currentHero;
+	//todo Test
 	private String notification = "";
 
-	public GameViewHandler(CurrentHero currentHero) {
+	public GamePlayHandler(CurrentHero currentHero) {
 		super("gameView.txt");
 		this.currentHero = currentHero;
 	}
@@ -34,9 +36,9 @@ public class GameViewHandler extends BaseViewHandler {
 		if (command.equals("f")) {
 			if (hero.getCurrentRoom().getCharacters().isEmpty()) {
 				notification = "There is no one to fight";
-				return GAME_VIEW;
+				return GAME_PLAY;
 			}
-			return FIGHT_VIEW;
+			return FIGHT;
 		}
 		boolean movedSuccess = true;
 		switch (command) {
@@ -58,7 +60,7 @@ public class GameViewHandler extends BaseViewHandler {
 		} else {
 			notification = "";
 		}
-		return GAME_VIEW;
+		return GAME_PLAY;
 	}
 
 	@Override
