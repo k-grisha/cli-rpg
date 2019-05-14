@@ -9,6 +9,9 @@ import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.LOAD_GAME;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 
+/**
+ * Main Menu handler
+ */
 public class MainMenuHandler extends BaseViewHandler {
 
 	private final HeroService heroService;

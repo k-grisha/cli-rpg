@@ -10,6 +10,9 @@ import java.util.Set;
 
 import static gr.prog.clirpg.view.View.GAME_PLAY;
 
+/**
+ * Show Map view handler
+ */
 public class WorldMapHandler extends BaseViewHandler {
 
 	private final CurrentHero currentHero;

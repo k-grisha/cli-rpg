@@ -9,6 +9,9 @@ import java.util.List;
 
 import static gr.prog.clirpg.view.View.*;
 
+/**
+ * Load Game handler
+ */
 public class LoadGameHandler extends BaseViewHandler {
 	private final HeroService heroService;
 	private final CurrentHero currentHero;

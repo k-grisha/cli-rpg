@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * In-memory repository of Heroes
+ */
 public class InMemoryRepository implements Repository<Hero> {
 	private static InMemoryRepository instance;
 

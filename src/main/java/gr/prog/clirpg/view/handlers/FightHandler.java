@@ -10,6 +10,9 @@ import java.util.List;
 
 import static gr.prog.clirpg.view.View.*;
 
+/**
+ * Fight view handler
+ */
 public class FightHandler extends BaseViewHandler {
 
 	private final CurrentHero currentHero;

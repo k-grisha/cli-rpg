@@ -13,6 +13,9 @@ import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 import static gr.prog.clirpg.view.View.WOLD_MAP;
 
+/**
+ * Game Play handler
+ */
 public class GamePlayHandler extends BaseViewHandler {
 
 	private final CurrentHero currentHero;

@@ -8,6 +8,9 @@ import gr.prog.clirpg.view.View;
 import static gr.prog.clirpg.view.View.GAME_PLAY;
 import static gr.prog.clirpg.view.View.MAIN_MENU;
 
+/**
+ * Create new hero handler
+ */
 public class CreateHeroHandler extends BaseViewHandler {
 	private final HeroService heroService;
 	private final CurrentHero currentHero;

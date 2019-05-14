@@ -103,20 +103,4 @@ public class Hero extends Character implements Serializable {
 		return getName() + " " + randomKick + " " + character.getName();
 	}
 
-
-	// todo REMOVE
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Hero hero = (Hero) o;
-		return Objects.equals(getName(), hero.getName());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getName());
-	}
-
-
 }

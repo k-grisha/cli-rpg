@@ -2,6 +2,9 @@ package gr.prog.clirpg.services;
 
 import gr.prog.clirpg.model.characters.Hero;
 
+/**
+ * Singleton wrapper for Hero
+ */
 public class CurrentHero {
 	private static CurrentHero instance;
 	private Hero hero;

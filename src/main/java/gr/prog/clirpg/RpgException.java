@@ -1,5 +1,8 @@
 package gr.prog.clirpg;
 
+/**
+ * Game specific Exception
+ */
 public class RpgException extends RuntimeException {
 	public RpgException(String message) {
 		super(message);

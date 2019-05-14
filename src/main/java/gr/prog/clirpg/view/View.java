@@ -11,6 +11,9 @@ import gr.prog.clirpg.view.handlers.MainMenuHandler;
 import gr.prog.clirpg.view.handlers.WelcomeHandler;
 import gr.prog.clirpg.view.handlers.WorldMapHandler;
 
+/**
+ * Storage of all views
+ */
 public enum View {
 
 	WELCOME(new WelcomeHandler()),
@@ -31,10 +34,5 @@ public enum View {
 		return handler;
 	}
 
-	public interface ViewHandler {
-		View dispatchCommand(String command);
-
-		String getTextPresent();
-	}
 
 }

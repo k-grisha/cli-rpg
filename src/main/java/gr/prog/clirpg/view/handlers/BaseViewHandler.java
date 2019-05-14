@@ -1,14 +1,18 @@
 package gr.prog.clirpg.view.handlers;
 
 import gr.prog.clirpg.RpgException;
-import gr.prog.clirpg.view.View;
+import gr.prog.clirpg.view.ViewHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public abstract class BaseViewHandler implements View.ViewHandler {
+/**
+ * Basic View Handler
+ * Load template of view from file
+ */
+public abstract class BaseViewHandler implements ViewHandler {
 
 	private final String content;
 
