@@ -7,9 +7,7 @@ import gr.prog.clirpg.view.View;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.GAME_PLAY;
-import static gr.prog.clirpg.view.View.LOAD_GAME;
-import static gr.prog.clirpg.view.View.MAIN_MENU;
+import static gr.prog.clirpg.view.View.*;
 
 public class LoadGameHandler extends BaseViewHandler {
 	private final HeroService heroService;
@@ -26,12 +24,13 @@ public class LoadGameHandler extends BaseViewHandler {
 		if (command.equals("m")) {
 			return MAIN_MENU;
 		}
-		Hero loadedHero = null;
+		Hero loadedHero;
 		try {
 			int index = Integer.parseInt(command);
 			loadedHero = heroService.load(index);
 		} catch (NumberFormatException e) {
 			// todo Logging
+			return LOAD_GAME;
 		}
 		if (loadedHero != null) {
 			currentHero.setHero(loadedHero);

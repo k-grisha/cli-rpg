@@ -35,6 +35,11 @@ public class InMemoryRepositoryTest {
 	}
 
 	@Test
+	public void findById_outOfIndex_null(){
+		Assert.assertNull(heroRepository.findById(2));
+	}
+
+	@Test
 	public void findById_differentObjects() {
 		Hero hero1 = heroRepository.findById(0);
 		Hero hero2 = heroRepository.findById(0);

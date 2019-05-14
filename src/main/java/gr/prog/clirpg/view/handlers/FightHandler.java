@@ -8,9 +8,7 @@ import gr.prog.clirpg.view.utils.Color;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.FIGHT;
-import static gr.prog.clirpg.view.View.GAME_PLAY;
-import static gr.prog.clirpg.view.View.MAIN_MENU;
+import static gr.prog.clirpg.view.View.*;
 
 public class FightHandler extends BaseViewHandler {
 
@@ -34,6 +32,10 @@ public class FightHandler extends BaseViewHandler {
 		Character character;
 		try {
 			int index = Integer.parseInt(command);
+			if (index >= hero.getCurrentRoom().getCharacters().size()) {
+				notification = "Incorrect Character index.";
+				return FIGHT;
+			}
 			character = hero.getCurrentRoom().getCharacters().get(index);
 		} catch (NumberFormatException e) {
 			// todo Logging
