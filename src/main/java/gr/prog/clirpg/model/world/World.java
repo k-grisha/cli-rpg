@@ -22,7 +22,7 @@ public class World implements Serializable {
 		}
 		Room room = rooms[position.x][position.y];
 		if (room == null) {
-			room = roomBuilder.generateRoom();
+			room = roomBuilder.generateRandomRoom();
 			rooms[position.x][position.y] = room;
 		}
 		return room;
