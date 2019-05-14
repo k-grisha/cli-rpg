@@ -5,14 +5,7 @@ import gr.prog.clirpg.model.world.Room;
 import gr.prog.clirpg.model.world.World;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Hero extends Character implements Serializable {
 	private Integer experience;
@@ -23,7 +16,7 @@ public class Hero extends Character implements Serializable {
 		put("left hand hit", 0.5);
 		put("kicked", 1.5);
 	}};
-	private World world;
+	private final World world;
 
 
 	public Hero(String name, Integer maxHealth, Integer strength, Integer experience, World world) {

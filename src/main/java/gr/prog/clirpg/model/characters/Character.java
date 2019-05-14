@@ -12,7 +12,7 @@ public abstract class Character implements Serializable {
 	private Integer strength;
 	private final String name;
 
-	public Character(Integer maxHealth, Integer strength, String name) {
+	Character(Integer maxHealth, Integer strength, String name) {
 		this.health = maxHealth;
 		this.maxHealth = maxHealth;
 		this.strength = strength;

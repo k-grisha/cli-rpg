@@ -26,7 +26,6 @@ public class CreateHeroHandler extends BaseViewHandler {
 		if (command.equals("m")) {
 			return MAIN_MENU;
 		}
-		// todo validation
 		Hero newHero = heroService.createHero(command);
 		currentHero.setHero(newHero);
 		return GAME_PLAY;

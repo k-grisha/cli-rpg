@@ -15,7 +15,7 @@ public abstract class RoomFactory {
 	private final List<String> descriptions = new ArrayList<>();
 	private final String fileName;
 
-	public RoomFactory(String fileName) {
+	RoomFactory(String fileName) {
 		this.fileName = fileName;
 	}
 

@@ -41,7 +41,6 @@ public class FightHandler extends BaseViewHandler {
 			}
 			character = hero.getCurrentRoom().getCharacters().get(index);
 		} catch (NumberFormatException e) {
-			// todo Logging
 			return FIGHT;
 		}
 		notification = hero.attack(character);
