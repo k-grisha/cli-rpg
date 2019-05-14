@@ -12,6 +12,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class InMemoryRepository implements Repository<Hero> {
 	private static InMemoryRepository instance;
@@ -28,7 +29,6 @@ public class InMemoryRepository implements Repository<Hero> {
 		return instance;
 	}
 
-
 	@Override
 	public void save(Hero hero) {
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -43,16 +43,15 @@ public class InMemoryRepository implements Repository<Hero> {
 
 	@Override
 	public Hero findById(int id) {
-		//todo validation
 		byte[] bytes = storage.get(id);
-		return readHero(bytes);
+		return readHero(bytes).orElse(null);
 	}
 
 	@Override
 	public List<Hero> findAll() {
 		List<Hero> result = new ArrayList<>();
 		for (byte[] bytes : storage) {
-			result.add(readHero(bytes));
+			readHero(bytes).ifPresent(result::add);
 		}
 		return result;
 	}
@@ -62,14 +61,14 @@ public class InMemoryRepository implements Repository<Hero> {
 		storage.clear();
 	}
 
-	private Hero readHero(byte[] bytes) {
+	private Optional<Hero> readHero(byte[] bytes) {
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 			 ObjectInput in = new ObjectInputStream(bis)) {
-			return (Hero) in.readObject();
+			return Optional.of((Hero) in.readObject());
 		} catch (IOException | ClassNotFoundException e) {
-			throw new RpgException(e);
+			e.printStackTrace();
+			return Optional.empty();
 		}
-
 	}
 
 }

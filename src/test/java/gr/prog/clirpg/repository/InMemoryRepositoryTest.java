@@ -2,6 +2,7 @@ package gr.prog.clirpg.repository;
 
 import gr.prog.clirpg.model.characters.Hero;
 import gr.prog.clirpg.model.world.World;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,16 +23,22 @@ public class InMemoryRepositoryTest {
 
 
 	@Test
-	public void findAll() {
-		List<Hero> all = heroRepository.findAll();
-		System.out.println(all);
+	public void findAll_success() {
+		List<Hero> heroes = heroRepository.findAll();
+		Assert.assertEquals(2, heroes.size());
 	}
 
 	@Test
-	public void findById() {
+	public void findById(){
 		Hero hero = heroRepository.findById(0);
-		hero.setExperience(1000);
-		hero = heroRepository.findById(0);
-		System.out.println(hero);
+		Assert.assertEquals(billi.getName(), hero.getName());
+	}
+
+	@Test
+	public void findById_differentObjects() {
+		Hero hero1 = heroRepository.findById(0);
+		Hero hero2 = heroRepository.findById(0);
+		hero1.setExperience(1000);
+		Assert.assertNotEquals(hero1.getExperience(), hero2.getExperience());
 	}
 }
