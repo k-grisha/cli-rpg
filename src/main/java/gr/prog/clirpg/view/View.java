@@ -3,16 +3,10 @@ package gr.prog.clirpg.view;
 import gr.prog.clirpg.repository.InMemoryRepository;
 import gr.prog.clirpg.services.CurrentHero;
 import gr.prog.clirpg.services.HeroService;
-import gr.prog.clirpg.view.handlers.CreateHeroHandler;
-import gr.prog.clirpg.view.handlers.FightHandler;
-import gr.prog.clirpg.view.handlers.GamePlayHandler;
-import gr.prog.clirpg.view.handlers.LoadGameHandler;
-import gr.prog.clirpg.view.handlers.MainMenuHandler;
-import gr.prog.clirpg.view.handlers.WelcomeHandler;
-import gr.prog.clirpg.view.handlers.WorldMapHandler;
+import gr.prog.clirpg.view.handlers.*;
 
 /**
- * Storage of all views
+ * View registry
  */
 public enum View {
 
@@ -22,7 +16,8 @@ public enum View {
 	CREATE_HERO(new CreateHeroHandler(new HeroService(InMemoryRepository.getInstance()), CurrentHero.getInstance())),
 	GAME_PLAY(new GamePlayHandler(CurrentHero.getInstance())),
 	WOLD_MAP(new WorldMapHandler(CurrentHero.getInstance())),
-	FIGHT(new FightHandler(CurrentHero.getInstance()));
+	FIGHT(new FightHandler(CurrentHero.getInstance())),
+	GAME_OVER(new GameOverHandler());
 
 	private final ViewHandler handler;
 

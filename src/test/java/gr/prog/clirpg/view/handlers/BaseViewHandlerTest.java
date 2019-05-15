@@ -18,7 +18,8 @@ public class BaseViewHandlerTest {
 			new MainMenuHandler(heroService, currentHero),
 			new WelcomeHandler(),
 			new WorldMapHandler(currentHero),
-			new LoadGameHandler(heroService, currentHero)
+			new LoadGameHandler(heroService, currentHero),
+			new GameOverHandler()
 	);
 
 	//

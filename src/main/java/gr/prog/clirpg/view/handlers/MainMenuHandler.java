@@ -31,11 +31,11 @@ public class MainMenuHandler extends BaseViewHandler {
 		if (command.equals("l")) {
 			return LOAD_GAME;
 		}
-		if (command.equals("s") && currentHero.getHero() != null) {
+		if (command.equals("s") && currentHero.getHero() != null && currentHero.getHero().isAlive()) {
 			heroService.save(currentHero.getHero());
 			return GAME_PLAY;
 		}
-		if (command.equals("b") && currentHero.getHero() != null) {
+		if (command.equals("b") && currentHero.getHero() != null && currentHero.getHero().isAlive()) {
 			return GAME_PLAY;
 		}
 		if (command.equals("q")) {

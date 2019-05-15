@@ -52,6 +52,7 @@ public class FightHandler extends BaseViewHandler {
 		// todo handle death
 		if (!hero.isAlive()) {
 			notification += "\n" + hero.getName() + " died.";
+			return GAME_OVER;
 		}
 		return FIGHT;
 	}
