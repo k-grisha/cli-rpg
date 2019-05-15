@@ -3,6 +3,9 @@ package gr.prog.clirpg.model.world;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Position in the World
+ */
 public class Position implements Serializable {
 	public final int x;
 	public final int y;

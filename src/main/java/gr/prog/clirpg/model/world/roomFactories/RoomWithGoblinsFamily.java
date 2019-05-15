@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+/**
+ * Factory of rooms with Goblis family
+ */
 public class RoomWithGoblinsFamily extends RoomFactory {
-
 	private final Random rndGenerator = new Random();
 
 	public RoomWithGoblinsFamily() {

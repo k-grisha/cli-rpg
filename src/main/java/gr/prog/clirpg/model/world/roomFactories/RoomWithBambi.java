@@ -6,6 +6,9 @@ import gr.prog.clirpg.model.world.Room;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * Factory of rooms with Bambi
+ */
 public class RoomWithBambi extends RoomFactory {
 
 	private final Random rndGenerator = new Random();

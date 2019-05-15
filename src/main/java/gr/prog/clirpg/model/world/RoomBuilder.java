@@ -10,9 +10,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Singleton Rooms builder
+ */
 public class RoomBuilder {
 	private static RoomBuilder instance;
-
 	private final Random rndGenerator = new Random();
 	private final List<RoomFactory> randomizedRoomFactories = Arrays.asList(
 			new RoomWithGoblinsFamily(),
@@ -31,6 +33,11 @@ public class RoomBuilder {
 		return instance;
 	}
 
+	/**
+	 * Rooms generator will produce 1/4 of rooms with characters and 3/4 empty
+	 *
+	 * @return Room
+	 */
 	public Room generateRandomRoom() {
 		if (rndGenerator.nextInt(3) == 0) {
 			return randomizedRoomFactories.get(rndGenerator.nextInt(randomizedRoomFactories.size())).createRoom();
@@ -38,7 +45,11 @@ public class RoomBuilder {
 		return emptyRoomFactory.createRoom();
 	}
 
-
+	/**
+	 * Get initial Room
+	 *
+	 * @return Room
+	 */
 	public Room getInitialRoom() {
 		return initialRoom;
 	}

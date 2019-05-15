@@ -10,11 +10,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Room Factory
+ */
 public abstract class RoomFactory {
-
 	private final List<String> descriptions = new ArrayList<>();
 	private final String fileName;
 
+	/**
+	 * Construct room factory
+	 *
+	 * @param fileName File with room descriptions
+	 */
 	RoomFactory(String fileName) {
 		this.fileName = fileName;
 	}
@@ -43,5 +50,10 @@ public abstract class RoomFactory {
 		}
 	}
 
+	/**
+	 * Rooms creator
+	 *
+	 * @return Room
+	 */
 	public abstract Room createRoom();
 }
