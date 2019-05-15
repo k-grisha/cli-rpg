@@ -4,4 +4,8 @@
 
 ${worldMap}
 
+Legend:
+[47m [0m - unexplored land
+[32mX[0m - Hero position
+[31mE[0m - some characters
 Hit any key and press [Enter]:

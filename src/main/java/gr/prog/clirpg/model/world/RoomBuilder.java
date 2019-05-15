@@ -21,7 +21,7 @@ public class RoomBuilder {
 			new RoomWithBambi()
 	);
 	private final RoomFactory emptyRoomFactory = new EmptyRoom();
-	private Room initialRoom = new Room("This is initial room. You can explore the world and get fame in battles.", Collections.emptyList());
+	private Room initialRoom = new Room("This is initial location. You can explore the world and get fame in battles.", Collections.emptyList());
 
 	private RoomBuilder() {
 	}

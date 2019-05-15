@@ -49,7 +49,6 @@ public class FightHandler extends BaseViewHandler {
 		} else {
 			notification += "\n" + character.getName() + " died.";
 		}
-		// todo handle death
 		if (!hero.isAlive()) {
 			notification += "\n" + hero.getName() + " died.";
 			return GAME_OVER;
@@ -64,21 +63,22 @@ public class FightHandler extends BaseViewHandler {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < characters.size(); i++) {
 			Character character = characters.get(i);
-			sb.append("[").append(i).append("] : ")
+			sb.append("[").append(Color.ANSI_BLUE).append(i).append(Color.ANSI_RESET).append("] : ")
 					.append(character.getName());
 			if (character.isAlive()) {
 				sb.append(" [health:").append(character.getHealth()).append(", strength:").append(character.getStrength()).append("]\n");
 			} else {
 				sb.append(Color.ANSI_RED).append(" [dead]").append(Color.ANSI_RESET).append("\n");
 			}
-
 		}
-		return getContent()
+		String presentation = getContent()
 				.replace("${notification}", notification)
 				.replace("${characters}", sb.toString())
 				.replace("${username}", hero.getName())
 				.replace("${health}", hero.getHealth().toString())
 				.replace("${strength}", hero.getStrength().toString())
 				.replace("${experience}", hero.getExperience().toString());
+		notification = "";
+		return presentation;
 	}
 }

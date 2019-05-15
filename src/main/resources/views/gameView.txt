@@ -3,18 +3,18 @@
 -----------------------------
 [33m${notification} [0m
 Location description:
-${description}
+[32m${description}[0m
 
 Characters in location:
 ${characters}
 
-${username}, your current health:${health}, experience:${experience}, strength:${strength}
-[w] : go Up
-[s] : go Down
-[a] : go Left
-[d] : go Right
-[f] : Fight
-[v] : Show Map
-[m] : Main menu
+[35m${username}[0m, your current health: [35m${health}[0m, experience: [35m${experience}[0m, strength: [35m${strength}[0m
+[[34mw[0m] : go Up
+[[34ms[0m] : go Down
+[[34ma[0m] : go Left
+[[34md[0m] : go Right
+[[34mf[0m] : Fight
+[[34mv[0m] : Show Map
+[[34mm[0m] : Main menu
 
 Choose one of options and press [Enter]:

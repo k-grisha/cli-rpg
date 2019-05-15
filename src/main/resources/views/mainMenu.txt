@@ -1,10 +1,10 @@
 -----------------------------
         MAIN MENU
 -----------------------------
-[n] : New Game
-[l] : Load Game
-[s] : Save Game
-[b] : Back to Game
-[q] : Exit
+[[34mn[0m] : New Game
+[[34ml[0m] : Load Game
+[[34ms[0m] : Save Game
+[[34mb[0m] : Back to Game
+[[34mq[0m] : Exit
 
 Choose one of options and press [Enter]:

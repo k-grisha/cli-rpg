@@ -4,6 +4,7 @@ import gr.prog.clirpg.model.characters.Hero;
 import gr.prog.clirpg.services.CurrentHero;
 import gr.prog.clirpg.services.HeroService;
 import gr.prog.clirpg.view.View;
+import gr.prog.clirpg.view.utils.Color;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class LoadGameHandler extends BaseViewHandler {
 		List<Hero> heroes = heroService.getAllHeroes();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < heroes.size(); i++) {
-			sb.append("[").append(i).append("] : ")
+			sb.append("[").append(Color.ANSI_BLUE).append(i).append(Color.ANSI_RESET).append("] : ")
 					.append(" name: ").append(heroes.get(i).getName())
 					.append(" health: ").append(heroes.get(i).getHealth())
 					.append(" experience: ").append(heroes.get(i).getExperience()).append("\n");

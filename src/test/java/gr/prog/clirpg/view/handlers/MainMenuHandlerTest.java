@@ -30,6 +30,7 @@ public class MainMenuHandlerTest {
 	@Test
 	public void dispatchCommand_saveGame_success() {
 		Mockito.when(currentHero.getHero()).thenReturn(Mockito.mock(Hero.class));
+		Mockito.when(currentHero.getHero().isAlive()).thenReturn(true);
 		View view = mainMenuHandler.dispatchCommand("s");
 		Assert.assertEquals(View.GAME_PLAY, view);
 		Mockito.verify(heroService, Mockito.times(1)).save(Mockito.any(Hero.class));
@@ -38,6 +39,7 @@ public class MainMenuHandlerTest {
 	@Test
 	public void dispatchCommand_back_success() {
 		Mockito.when(currentHero.getHero()).thenReturn(Mockito.mock(Hero.class));
+		Mockito.when(currentHero.getHero().isAlive()).thenReturn(true);
 		View view = mainMenuHandler.dispatchCommand("b");
 		Assert.assertEquals(View.GAME_PLAY, view);
 	}

@@ -18,6 +18,7 @@ public class FightHandlerTest {
 	@Test
 	public void dispatchCommand_values_success() {
 		Mockito.when(currentHero.getHero().getCurrentRoom().getCharacters()).thenReturn(Collections.singletonList(Mockito.mock(Enemy.class)));
+		Mockito.when(currentHero.getHero().isAlive()).thenReturn(true);
 		View view = fightHandler.dispatchCommand("0");
 		Assert.assertEquals(View.FIGHT, view);
 		Mockito.verify(currentHero.getHero(), Mockito.times(1)).attack(Mockito.any(Character.class));

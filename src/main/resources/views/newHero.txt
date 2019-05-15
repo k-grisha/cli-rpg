@@ -2,6 +2,6 @@
         NEW GAME
 -----------------------------
 
-[m] : Main menu
+[[34mm[0m] : Main menu
 
 Enter your hero name and press [Enter]:

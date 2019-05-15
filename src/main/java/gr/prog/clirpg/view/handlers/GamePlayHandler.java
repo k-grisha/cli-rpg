@@ -8,10 +8,7 @@ import gr.prog.clirpg.view.utils.Color;
 
 import java.util.List;
 
-import static gr.prog.clirpg.view.View.FIGHT;
-import static gr.prog.clirpg.view.View.GAME_PLAY;
-import static gr.prog.clirpg.view.View.MAIN_MENU;
-import static gr.prog.clirpg.view.View.WOLD_MAP;
+import static gr.prog.clirpg.view.View.*;
 
 /**
  * Game Play handler
@@ -75,7 +72,7 @@ public class GamePlayHandler extends BaseViewHandler {
 			sb.append("Nobody here");
 		}
 		for (Character character : characters) {
-			sb.append(character.getName());
+			sb.append(Color.ANSI_PURPLE).append(character.getName()).append(Color.ANSI_RESET);
 			if (character.isAlive()) {
 				sb.append(" [health:").append(character.getHealth()).append(", strength:").append(character.getStrength()).append("]\n");
 			} else {
@@ -83,7 +80,7 @@ public class GamePlayHandler extends BaseViewHandler {
 			}
 		}
 
-		return getContent()
+		String presentation = getContent()
 				.replace("${notification}", notification)
 				.replace("${description}", hero.getCurrentRoom().getDescription())
 				.replace("${characters}", sb.toString())
@@ -91,5 +88,7 @@ public class GamePlayHandler extends BaseViewHandler {
 				.replace("${health}", hero.getHealth().toString())
 				.replace("${strength}", hero.getStrength().toString())
 				.replace("${experience}", hero.getExperience().toString());
+		notification = "";
+		return presentation;
 	}
 }
